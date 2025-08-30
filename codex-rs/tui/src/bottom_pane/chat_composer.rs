@@ -508,6 +508,23 @@ impl ChatComposer {
                 popup.move_down();
                 (InputResult::None, true)
             }
+            // Emacs-style navigation: Ctrl+p (up), Ctrl+n (down)
+            KeyEvent {
+                code: KeyCode::Char('p'),
+                modifiers: KeyModifiers::CONTROL,
+                ..
+            } => {
+                popup.move_up();
+                (InputResult::None, true)
+            }
+            KeyEvent {
+                code: KeyCode::Char('n'),
+                modifiers: KeyModifiers::CONTROL,
+                ..
+            } => {
+                popup.move_down();
+                (InputResult::None, true)
+            }
             KeyEvent {
                 code: KeyCode::Esc, ..
             } => {
