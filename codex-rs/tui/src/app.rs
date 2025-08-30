@@ -294,6 +294,14 @@ impl App {
                 self.overlay = Some(Overlay::new_transcript(self.transcript_lines.clone()));
                 tui.frame_requester().schedule_frame();
             }
+            KeyEvent {
+                code: KeyCode::Char('m'),
+                modifiers: crossterm::event::KeyModifiers::CONTROL,
+                kind: KeyEventKind::Press,
+                ..
+            } => {
+                self.chat_widget.open_model_popup();
+            }
             // Esc primes/advances backtracking only in normal (not working) mode
             // with an empty composer. In any other state, forward Esc so the
             // active UI (e.g. status indicator, modals, popups) handles it.
