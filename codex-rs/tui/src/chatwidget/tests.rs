@@ -271,6 +271,30 @@ fn alt_up_edits_most_recent_queued_message() {
 }
 
 #[test]
+fn alt_m_opens_model_popup() {
+    let (mut chat, _rx, _op_rx) = make_chatwidget_manual();
+
+    assert!(chat.bottom_pane.is_normal_backtrack_mode());
+
+    chat.handle_key_event(KeyEvent::new(KeyCode::Char('m'), KeyModifiers::ALT));
+
+    assert!(!chat.bottom_pane.is_task_running());
+    assert!(!chat.bottom_pane.is_normal_backtrack_mode());
+}
+
+#[test]
+fn option_m_opens_model_popup() {
+    let (mut chat, _rx, _op_rx) = make_chatwidget_manual();
+
+    assert!(chat.bottom_pane.is_normal_backtrack_mode());
+
+    chat.handle_key_event(KeyEvent::new(KeyCode::Char('\u{00B5}'), KeyModifiers::NONE));
+
+    assert!(!chat.bottom_pane.is_task_running());
+    assert!(!chat.bottom_pane.is_normal_backtrack_mode());
+}
+
+#[test]
 fn exec_history_cell_shows_working_then_completed() {
     let (mut chat, mut rx, _op_rx) = make_chatwidget_manual();
 

@@ -712,6 +712,20 @@ impl ChatWidget {
 
         match key_event {
             KeyEvent {
+                code: KeyCode::Char('m'),
+                modifiers: KeyModifiers::ALT,
+                kind: KeyEventKind::Press,
+                ..
+            }
+            | KeyEvent {
+                code: KeyCode::Char('\u{00B5}'),
+                modifiers: KeyModifiers::NONE,
+                kind: KeyEventKind::Press,
+                ..
+            } => {
+                self.dispatch_command(SlashCommand::Model);
+            }
+            KeyEvent {
                 code: KeyCode::Up,
                 modifiers: KeyModifiers::ALT,
                 kind: KeyEventKind::Press,
